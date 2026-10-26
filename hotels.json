@@ -1,0 +1,38 @@
+
+[
+  {
+    "id": "H001",
+    "name": "Sample Grand Hotel",
+    "location": "KL-H",
+    "city": "Kuala Lumpur",
+    "state": "Kuala Lumpur",
+    "star_rating": 5,
+    "hotel_group": "Sample Hospitality Group",
+    "address": "123 Sample Avenue, Kuala Lumpur",
+    "contact_person": "Sample Contact",
+    "contact_email": "hotel@example.com",
+    "contact_phone": "+60 3-0000 0000",
+    "parking": {
+      "available": true,
+      "type": "Covered",
+      "location": "Basement"
+    },
+    "facilities": {
+      "swimming_pool": true,
+      "gym": true,
+      "prayer_room": true,
+      "restaurant": true
+    },
+    "nearby_facilities": [
+      "Shopping mall",
+      "Public transport",
+      "Convenience store"
+    ],
+    "meeting_rooms": [],
+    "room_types": [],
+    "meeting_rates": [],
+    "residential_rates": [],
+    "photos": [],
+    "notes": "Fictional sample record for testing only."
+  }
+]
