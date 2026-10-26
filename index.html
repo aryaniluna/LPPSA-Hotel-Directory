@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LPPSA Hotel Directory</title>
+
+  <style>
+    :root {
+      --ink: #202923;
+      --muted: #737a73;
+      --cream: #f7f6f1;
+      --white: #ffffff;
+      --gold: #ad8b53;
+      --line: #e5e3da;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+    }
+
+    header {
+      background: var(--ink);
+      color: white;
+      padding: 28px 7%;
+    }
+
+    .brand {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #d7c39f;
+      text-transform: uppercase;
+    }
+
+    header h1 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: clamp(30px, 5vw, 48px);
+      margin: 18px 0 8px;
+    }
+
+    header p {
+      color: #d8ddd7;
+      line-height: 1.7;
+      max-width: 620px;
+      margin-bottom: 0;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 38px 24px 60px;
+    }
+
+    .intro {
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-family: Georgia, serif;
+      font-weight: normal;
+      font-size: 30px;
+      margin: 10px 0;
+    }
+
+    .intro p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 12px;
+      margin: 26px 0;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: white;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .results {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hotel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .hotel-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .hotel-image {
+      min-height: 175px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e9e5da;
+      color: #777568;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hotel-content {
+      padding: 20px;
+    }
+
+    .hotel-location {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hotel-content h3 {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: normal;
+      margin: 10px 0;
+    }
+
+    .hotel-meta {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      background: #f2f0e9;
+      border-radius: 3px;
+      padding: 6px 8px;
+      font-size: 11px;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      background: white;
+      padding: 32px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px solid var(--line);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 800px) {
+      .hotel-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .toolbar input {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hotel-grid,
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar input {
+        grid-column: auto;
+      }
+
+      main {
+        padding: 28px 16px 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">LPPSA · Internal Reference Concept</div>
+    <h1>Hotel Directory</h1>
+    <p>A central reference for exploring hotel properties, facilities and accommodation options for programme planning.</p>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="eyebrow">Hospitality Collection</div>
+      <h2>Explore Hotels</h2>
+      <p>Browse hotel profiles and narrow your selection by location and star rating.</p>
+    </section>
+
+    <section class="toolbar">
+      <input id="search" type="search" placeholder="Search hotel name or hotel group...">
+
+      <select id="location">
+        <option value="">All locations</option>
+        <option value="KL-H">Kuala Lumpur — Hotel</option>
+        <option value="PUTRAJAYA-H">Putrajaya — Hotel</option>
+        <option value="PUTRAJAYA-S">Putrajaya — Serviced Apartment</option>
+        <option value="KL-S">Kuala Lumpur — Serviced Apartment</option>
+        <option value="SEL-S">Selangor — Serviced Apartment</option>
+      </select>
+
+      <select id="stars">
+        <option value="">All star ratings</option>
+        <option value="5">5 Star</option>
+        <option value="4">4 Star</option>
+        <option value="3">3 Star</option>
+      </select>
+    </section>
+
+    <div class="results">
+      <span id="count">Loading hotels...</span>
+      <span>Sample data only</span>
+    </div>
+
+    <section id="hotelGrid" class="hotel-grid"></section>
+  </main>
+
+  <footer>
+    LPPSA Hotel Directory · Prototype · For demonstration only
+  </footer>
+
+  <script>
+    const sampleHotels = [
+      {
+        id: "H001",
+        name: "Sample Grand Hotel",
+        location: "KL-H",
+        city: "Kuala Lumpur",
+        star_rating: 5,
+        hotel_group: "Sample Hospitality Group",
+        parking: {
+          available: true,
+          type: "Covered"
+        },
+        facilities: {
+          swimming_pool: true,
+          gym: true,
+          prayer_room: true,
+          restaurant: true
+        }
+      }
+    ];
+
+    const grid = document.getElementById("hotelGrid");
+    const searchInput = document.getElementById("search");
+    const locationInput = document.getElementById("location");
+    const starsInput = document.getElementById("stars");
+    const count = document.getElementById("count");
+
+    function renderHotels() {
+      const search = searchInput.value.toLowerCase().trim();
+      const location = locationInput.value;
+      const stars = starsInput.value;
+
+      const filtered = sampleHotels.filter(hotel => {
+        const matchesSearch =
+          hotel.name.toLowerCase().includes(search) ||
+          hotel.hotel_group.toLowerCase().includes(search);
+
+        const matchesLocation =
+          !location || hotel.location === location;
+
+        const matchesStars =
+          !stars || String(hotel.star_rating) === stars;
+
+        return matchesSearch && matchesLocation && matchesStars;
+      });
+
+      count.textContent =
+        filtered.length + (filtered.length === 1 ? " sample hotel" : " sample hotels");
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="empty">
+            No hotels match your search. Try changing your filters.
+          </div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(hotel => {
+        const facilities = Object.entries(hotel.facilities)
+          .filter(([key, value]) => value)
+          .map(([key]) => key.replaceAll("_", " "))
+          .map(name => name.replace(/\b\w/g, letter => letter.toUpperCase()));
+
+        return `
+          <article class="hotel-card">
+            <div class="hotel-image">HOTEL PHOTOGRAPH<br>TO BE ADDED</div>
+            <div class="hotel-content">
+              <div class="hotel-location">${hotel.city} · ${hotel.location}</div>
+              <h3>${hotel.name}</h3>
+              <div class="hotel-meta">
+                ${"★".repeat(hotel.star_rating)}<br>
+                ${hotel.hotel_group}<br>
+                Parking: ${hotel.parking.available ? hotel.parking.type : "Not available"}
+              </div>
+              <div class="tag-list">
+                ${facilities.map(item => `<span class="tag">${item}</span>`).join("")}
+              </div>
+            </div>
+          </article>`;
+      }).join("");
+    }
+
+    searchInput.addEventListener("input", renderHotels);
+    locationInput.addEventListener("change", renderHotels);
+    starsInput.addEventListener("change", renderHotels);
+
+    renderHotels();
+  </script>
+</body>
+</html>
